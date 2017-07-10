@@ -16,14 +16,14 @@ export function gotMessagesFromServer (messageArr) {
   }
 }
 
-function writeMessage(messageStr) {
+export function writeMessage(messageStr) {
   return {
     type: WRITE_MESSAGE,
     newMessageEntry: messageStr
   }
 }
 
-function gotNewMessageFromServer (message) {
+export function gotNewMessageFromServer (message) {
   return {
     type: GOT_NEW_MESSAGE_FROM_SERVER,
     message: message
