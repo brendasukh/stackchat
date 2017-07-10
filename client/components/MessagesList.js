@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import Message from './Message';
 import NewMessageEntry from './NewMessageEntry';
+import store, {gotMessagesFromServer} from '../store'
 import axios from 'axios';
 
 export default class MessagesList extends Component {
 
   constructor () {
     super();
-    this.state = { messages: [] };
+    this.state = store.getState() ;
   }
 
   componentDidMount () {
     axios.get('/api/messages')
       .then(res => res.data)
-      .then(messages => this.setState({ messages }));
+      .then(messages => store.dispatch(gotMessagesFromServer(messages)))
+    this.unsubscribeFromStore = store.subscribe(() => {
+      this.setState(store.getState())
+    })
   }
-
   render () {
 
     const channelId = Number(this.props.match.params.channelId); // because it's a string "1", not a number!
