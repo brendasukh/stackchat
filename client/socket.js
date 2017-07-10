@@ -8,7 +8,6 @@ socket.on('connect', function () {
 
   socket.on('new-message', function (message) {
     store.dispatch(gotNewMessageFromServer(message));
-    console.log('client socket')
   });
 });
 

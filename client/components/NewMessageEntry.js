@@ -26,7 +26,6 @@ export default class NewMessageEntry extends Component {
   }
   handleSubmit (event) {
     event.preventDefault()
-    console.log('firing handleSubmit')
     const channelId = this.props.channelId
     const content = this.state.newMessageEntry
     axios.post('/api/messages', { content: content, channelId: channelId })
@@ -34,8 +33,8 @@ export default class NewMessageEntry extends Component {
     .then(message => {
       store.dispatch(gotNewMessageFromServer(message));
       socket.emit('new-message', message);
-      console.log('emitted in newmessageentry')
     });
+
   }
   render () {
     return (

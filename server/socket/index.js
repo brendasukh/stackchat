@@ -9,7 +9,6 @@ module.exports = io => {
 
     socket.on('new-message', message => {
       socket.broadcast.emit('new-message', message);
-      console.log('server-side socket')
     });
 
     socket.on('new-channel', channel => {
