@@ -19,6 +19,10 @@ export default class MessagesList extends Component {
       this.setState(store.getState())
     })
   }
+
+  componentWillUnmount () {
+    this.unsubscribeFromStore();
+  }
   render () {
 
     const channelId = Number(this.props.match.params.channelId); // because it's a string "1", not a number!
